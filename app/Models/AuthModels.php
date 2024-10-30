@@ -11,7 +11,7 @@ class AuthModels extends Model
     {
         $user = $this->where('username', $username)->first();
         print_r($user);
-        if ($user && isset($user['password'])) {
+        if ($user && isset($user['password'])&& hash("sha256", $password) == $user['password']) {
             return true;
         }
         return false;
